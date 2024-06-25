@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: securityDemo
+  security:
+    user:
+      username: user
+      password: admin
+  datasource:
+    url: jdbc:h2:mem:test
+  app:
+#    The specified key byte array is 104 bits which is not secure enough for any JWT HMAC-SHA algorithm. == "jwt secret is too short"
+    jwtSecret: mySecret1234forjwt55667788991010asdfghjklsdasdasdadasd123435mompleasehelp
+    jwtExpirationMs: 300000
+  h2:
+    console:
+      enabled: true
+
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.springframework: DEBUG
+    org.springframework.security: DEBUG
+    com.Jupiter.securityDemo: DEBUG
+
+
+
+
