@@ -26,7 +26,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
-public class SecurityConfig {
+public class SecurityConfigH2Database {
 
   @Autowired
   DataSource dataSource;
@@ -37,26 +37,6 @@ public class SecurityConfig {
   public AuthTokenFilter authenticationJwtTokenFilter() {
     return new AuthTokenFilter();
   }
-
-//  @Bean
-//  SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
-//    http.authorizeHttpRequests((requests) -> {
-//      ((AuthorizeHttpRequestsConfigurer.AuthorizedUrl) requests.requestMatchers("/h2-console/**")
-//          .permitAll()   // allow h2-console
-//          .anyRequest()).authenticated();
-//    });
-//
-//    // make no cookie and API stateless
-//    http.sessionManagement(
-//        (session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)));
-//
-//    // enabled the frame from the same origin
-//    http.headers(headers -> headers.frameOptions(FrameOptionsConfig::sameOrigin));
-//    //    http.httpBasic(Customizer.withDefaults());
-//
-//    http.csrf(csrf -> csrf.disable());
-//    return (SecurityFilterChain) http.build();
-//  }
 
   @Bean
   SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
@@ -83,21 +63,6 @@ public class SecurityConfig {
 
     return http.build();
   }
-
-  // Use inmemory to create multi user (UserDetails)
-  //  @Bean
-  //  public UserDetailsService userDetailsService() {
-  //    UserDetails user1 = User.withUsername("user1")
-  //        .password(passwordEncoder().encode("password1"))
-  //        .roles("USER").build();
-  //
-  //    UserDetails admin = User.withUsername("admin")
-  //        .password(passwordEncoder().encode("adminpass"))
-  //        .roles("ADMIN").build();
-  //
-  //    return new JdbcUserDetailsManager(dataSource);
-  //    //  return new InMemoryUserDetailsManager(user1, admin);
-  //  }
 
   @Bean
   public UserDetailsService userDetailsService() {
